@@ -1,47 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hetraceop Demo</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Hetraceop Demo</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <header>
-        <h1>Hetraceop</h1>
-        <nav>
-            <a href="#login">Login</a>
-            <a href="#register">Register</a>
-        </nav>
-    </header>
 
-    <section class="hero">
-        <h2>Welcome to Hetraceop Demo</h2>
-        <p>This is a demo website inspired by Raceop.com</p>
-        <button onclick="alert('Demo Bet Placed!')">Place Demo Bet</button>
-    </section>
+<h1 style="text-align:center;">Hetraceop Demo</h1>
 
-    <section id="login" class="form-section">
-        <h3>Login</h3>
-        <form onsubmit="alert('Demo Login Success'); return false;">
-            <input type="text" placeholder="Username" required>
-            <input type="password" placeholder="Password" required>
-            <button type="submit">Login</button>
-        </form>
-    </section>
+<div id="registerBox" class="box">
+<h3>Register</h3>
+<input id="ruser" placeholder="Username">
+<input id="rpass" type="password" placeholder="Password">
+<button onclick="register()">Register</button>
+</div>
 
-    <section id="register" class="form-section">
-        <h3>Register</h3>
-        <form onsubmit="alert('Demo Registration Success'); return false;">
-            <input type="text" placeholder="Username" required>
-            <input type="email" placeholder="Email" required>
-            <input type="password" placeholder="Password" required>
-            <button type="submit">Register</button>
-        </form>
-    </section>
+<div id="loginBox" class="box">
+<h3>Login</h3>
+<input id="luser" placeholder="Username">
+<input id="lpass" type="password" placeholder="Password">
+<button onclick="login()">Login</button>
+</div>
 
-    <footer>
-        <p>&copy; 2026 Hetraceop Demo. All rights reserved.</p>
-    </footer>
+<div id="dashboard" class="box" style="display:none;">
+<h3>Dashboard</h3>
+<p>Balance: $<span id="balance">5000</span></p>
+<button onclick="bet(100)">Bet $100</button>
+<button onclick="bet(500)">Bet $500</button>
+<button onclick="logout()">Logout</button>
+</div>
+
+<script>
+let balance = 5000;
+
+function register(){
+  let u = ruser.value;
+  let p = rpass.value;
+  if(!u || !p){ alert("Fill all"); return; }
+  localStorage.setItem("user", u);
+  localStorage.setItem("pass", p);
+  alert("Registered!");
+}
+
+function login(){
+  if(luser.value === localStorage.getItem("user") &&
+     lpass.value === localStorage.getItem("pass")){
+      loginBox.style.display="none";
+      registerBox.style.display="none";
+      dashboard.style.display="block";
+  } else {
+      alert("Wrong login");
+  }
+}
+
+function bet(amount){
+  if(balance < amount){ alert("No balance"); return; }
+  balance -= amount;
+  document.getElementById("balance").innerText = balance;
+}
+
+function logout(){
+  location.reload();
+}
+</script>
+
 </body>
 </html>
