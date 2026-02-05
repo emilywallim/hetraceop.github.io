@@ -68,36 +68,3 @@ function logout(){
 
 </body>
 </html>
-function register(){
-  let u = ruser.value;
-  let p = rpass.value;
-  if(!u || !p){ alert("Fill all"); return; }
-  localStorage.setItem("user", u);
-  localStorage.setItem("pass", p);
-  alert("Registered!");
-}
-
-function login(){
-  if(luser.value === localStorage.getItem("user") &&
-     lpass.value === localStorage.getItem("pass")){
-      loginBox.style.display="none";
-      registerBox.style.display="none";
-      dashboard.style.display="block";
-  } else {
-      alert("Wrong login");
-  }
-}
-
-function bet(amount){
-  if(balance < amount){ alert("No balance"); return; }
-  balance -= amount;
-  document.getElementById("balance").innerText = balance;
-}
-
-function logout(){
-  location.reload();
-}
-</script>
-
-</body>
-</html>
