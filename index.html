@@ -1,69 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Hetraceop Demo</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Supabase Login</title>
 </head>
-
 <body>
 
-<h1 style="text-align:center;">Hetraceop Demo</h1>
+<h2>Signup</h2>
+<input id="email" type="email" placeholder="Email"><br><br>
+<input id="password" type="password" placeholder="Password"><br><br>
+<button onclick="signup()">Signup</button>
 
-<div id="registerBox" class="box">
-<h3>Register</h3>
-<input id="ruser" placeholder="Username">
-<input id="rpass" type="password" placeholder="Password">
-<button onclick="register()">Register</button>
-</div>
-
-<div id="loginBox" class="box">
-<h3>Login</h3>
-<input id="luser" placeholder="Username">
-<input id="lpass" type="password" placeholder="Password">
+<h2>Login</h2>
 <button onclick="login()">Login</button>
-</div>
 
-<div id="dashboard" class="box" style="display:none;">
-<h3>Dashboard</h3>
-<p>Balance: $<span id="balance">5000</span></p>
-<button onclick="bet(100)">Bet $100</button>
-<button onclick="bet(500)">Bet $500</button>
-<button onclick="logout()">Logout</button>
-</div>
+<h3 id="msg"></h3>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-let balance = 5000;
+  const supabaseUrl = "https://vnxzbjzcalhkxxafjslg.supabase.co";
+  const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZueHpianpjYWxoa3h4YWZqc2xnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA1NzYwNDksImV4cCI6MjA4NjE1MjA0OX0.2yjkFEno9UuBKjO6peF6ZyT5dcGx8VmFz9FkHr4h1Fo";
 
-function register(){
-  let u = ruser.value;
-  let p = rpass.value;
-  if(!u || !p){ alert("Fill all"); return; }
-  localStorage.setItem("user", u);
-  localStorage.setItem("pass", p);
-  alert("Registered!");
-}
+  const supabase = supabaseJs.createClient(supabaseUrl, supabaseKey);
 
-function login(){
-  if(luser.value === localStorage.getItem("user") &&
-     lpass.value === localStorage.getItem("pass")){
-      loginBox.style.display="none";
-      registerBox.style.display="none";
-      dashboard.style.display="block";
-  } else {
-      alert("Wrong login");
+  async function signup() {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    const { error } = await supabase.auth.signUp({ email, password });
+    document.getElementById("msg").innerText =
+      error ? error.message : "Signup success! Email check করো";
   }
-}
 
-function bet(amount){
-  if(balance < amount){ alert("No balance"); return; }
-  balance -= amount;
-  document.getElementById("balance").innerText = balance;
-}
+  async function login() {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
 
-function logout(){
-  location.reload();
-}
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    document.getElementById("msg").innerText =
+      error ? error.message : "Login success!";
+  }
 </script>
 
 </body>
