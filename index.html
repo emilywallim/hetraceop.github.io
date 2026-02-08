@@ -1,46 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Supabase Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Raceop Clone</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/supabase.min.js"></script>
 </head>
 <body>
+  <div class="container">
+    <h1>Welcome to Raceop Clone</h1>
 
-<h2>Signup</h2>
-<input id="email" type="email" placeholder="Email"><br><br>
-<input id="password" type="password" placeholder="Password"><br><br>
-<button onclick="signup()">Signup</button>
+    <div class="auth">
+      <h2>Sign Up</h2>
+      <input type="email" id="signup-email" placeholder="Email">
+      <input type="password" id="signup-password" placeholder="Password">
+      <button onclick="signup()">Sign Up</button>
 
-<h2>Login</h2>
-<button onclick="login()">Login</button>
+      <h2>Login</h2>
+      <input type="email" id="login-email" placeholder="Email">
+      <input type="password" id="login-password" placeholder="Password">
+      <button onclick="login()">Login</button>
+    </div>
 
-<h3 id="msg"></h3>
+    <div id="message"></div>
+  </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-  const supabaseUrl = "https://vnxzbjzcalhkxxafjslg.supabase.co";
-  const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZueHpianpjYWxoa3h4YWZqc2xnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA1NzYwNDksImV4cCI6MjA4NjE1MjA0OX0.2yjkFEno9UuBKjO6peF6ZyT5dcGx8VmFz9FkHr4h1Fo";
-
-  const supabase = supabaseJs.createClient(supabaseUrl, supabaseKey);
-
-  async function signup() {
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-
-    const { error } = await supabase.auth.signUp({ email, password });
-    document.getElementById("msg").innerText =
-      error ? error.message : "Signup success! Email check করো";
-  }
-
-  async function login() {
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
-    document.getElementById("msg").innerText =
-      error ? error.message : "Login success!";
-  }
-</script>
-
+  <script src="script.js"></script>
 </body>
 </html>
