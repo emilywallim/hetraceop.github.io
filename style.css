@@ -1,56 +1,49 @@
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    background: #f0f2f5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-  }
+body {
+  font-family: Arial, sans-serif;
+  background-color: #1a1a1a;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
 
-  div.container {
-    background: #fff;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    width: 300px;
-    text-align: center;
-  }
+.container {
+  background-color: #222;
+  padding: 30px;
+  border-radius: 10px;
+  width: 350px;
+  text-align: center;
+}
 
-  h2 {
-    margin-bottom: 20px;
-    color: #333;
-  }
+h1 {
+  color: #ff4d4d;
+}
 
-  input {
-    width: 90%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 16px;
-  }
+input {
+  display: block;
+  width: 90%;
+  padding: 10px;
+  margin: 10px auto;
+  border-radius: 5px;
+  border: none;
+}
 
-  button {
-    width: 95%;
-    padding: 10px;
-    background: #4CAF50;
-    color: white;
-    border: none;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-bottom: 10px;
-  }
+button {
+  padding: 10px 20px;
+  background-color: #ff4d4d;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
-  button:hover {
-    background: #45a049;
-  }
+button:hover {
+  background-color: #ff1a1a;
+}
 
-  #msg {
-    color: red;
-    margin-top: 10px;
-    font-weight: bold;
-  }
-</style>
+#message {
+  margin-top: 20px;
+  color: #0f0;
+}
