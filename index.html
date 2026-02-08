@@ -1,31 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Raceop Clone</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/supabase.min.js"></script>
+  <title>Login Test</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
-  <div class="container">
-    <h1>Welcome to Raceop Clone</h1>
 
-    <div class="auth">
-      <h2>Sign Up</h2>
-      <input type="email" id="signup-email" placeholder="Email">
-      <input type="password" id="signup-password" placeholder="Password">
-      <button onclick="signup()">Sign Up</button>
+<h2>Login Test</h2>
 
-      <h2>Login</h2>
-      <input type="email" id="login-email" placeholder="Email">
-      <input type="password" id="login-password" placeholder="Password">
-      <button onclick="login()">Login</button>
-    </div>
+<input id="email" placeholder="email">
+<input id="password" type="password" placeholder="password">
+<button onclick="login()">Login</button>
 
-    <div id="message"></div>
-  </div>
+<p id="msg"></p>
 
-  <script src="script.js"></script>
+<script>
+  const supabase = window.supabase.createClient(
+    "https://vnxzbjzcalhkxxafjslg.supabase.co",
+    "PASTE_YOUR_ANON_KEY_HERE"
+  );
+
+  async function login() {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password
+    });
+
+    document.getElementById("msg").innerText =
+      error ? error.message : "LOGIN SUCCESS";
+  }
+</script>
+
 </body>
 </html>
